@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Login | blog.com{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'registration/style_login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2 class="login-title">Welcome back</h2>
+    {% if messages %}
+        <div class="login-messages">
+            {% for message in messages %}
+                <div class="login-alert login-alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <form method="post" class="login-form">
+        {% csrf_token %}
+        <div class="login-form-group">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+        </div>
+        <div class="login-form-group">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+        </div>
+        <button type="submit" class="login-submit">Login</button>
+    </form>
+    <br>
+    <a href="{% url 'user_registration' %}">
+        <button class="login-submit"> Create an account </button>
+    </a>
+</div>
+{% endblock %}
+

@@ -1,0 +1,14 @@
+.create-post-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+        padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.create-post-button:hover {
+    background-color: #333;
+}

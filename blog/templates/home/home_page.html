@@ -1,0 +1,59 @@
+<!-- home_page.html -->
+
+{% extends "base.html" %}
+{% load static %}
+{% load blog_tags %}
+
+
+{% block title %}Welcome to Our Blog{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'blog/style_home_page.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="messages-container">
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+</div>
+<br>
+<div class="blog-hero" style="background:linear-gradient(120deg,rgba(37,99,235,0.12),rgba(6,182,212,0.10)),url('{% static 'img/home/background-pic3.jpg' %}'); background-size:cover; background-position:center; border-radius:18px; margin-bottom:40px; min-height:340px; display:flex; align-items:center; justify-content:center; position:relative;">
+    <div style="background:rgba(255,255,255,0.7); padding:48px 36px; border-radius:18px; box-shadow:0 4px 32px rgba(30,64,175,0.10); text-align:center;">
+        <h1 style="font-size:2.8rem; font-weight:900; color:var(--primary-dark); margin-bottom:12px;">Discover Great Stories & Ideas</h1>
+        <p style="font-size:1.25rem; color:#444;">Explore insightful posts by our talented writers</p>
+    </div>
+</div>
+<div class="home-sections" style="display:flex; flex-direction:column; gap:40px;">
+    <section class="home-section" style="display:flex; gap:24px;">
+        <h4 style="flex:1; margin:0;">Recent posts</h4>
+        {% last_recent_posts 3 as last_posts %}
+        {% for post in last_posts %}
+        <div class="card" style="flex:1; padding:0; overflow:hidden;">
+            <a href="{% url 'post_details' post.slug %}">
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" style="width:100%; height:120px; object-fit:cover;">
+                {% else %}
+                    <img src="{% static 'img/default.jpg' %}" style="width:100%; height:120px; object-fit:cover;">
+                {% endif %}
+                <div style="padding:14px;">
+                    <h4 style="margin:0;">{{ post.title }}</h4>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </section>
+    <section class="home-section" style="display:flex; gap:24px;">
+        <h4 style="flex:1; margin:0;">Top Authors</h4>
+        {% top_authors 3 as top_authors %}
+        {% for author in top_authors %}
+        <div class="card" style="flex:1; text-align:center;">
+            <img src="{% static 'img/profile_defualt.jpg' %}" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin-bottom:10px;">
+            <h3 style="margin:0;">{{ author.username }}</h3>
+        </div>
+        {% endfor %}
+    </section>
+</div>
+{% endblock %}

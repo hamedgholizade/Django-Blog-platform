@@ -1,0 +1,19 @@
+<!-- Inside your comments-section in post_details.html -->
+<div class="comments-list">
+    {% if comments %}
+        {% for comment in comments %}
+        <div class="card" style="background:rgba(236,245,255,0.7); margin-bottom:18px; animation:fadeIn 0.7s;">
+            <div style="display:flex; align-items:center; gap:12px;">
+                <img src="{% static 'img/profile_defualt.jpg' %}" style="width:36px; height:36px; border-radius:50%; object-fit:cover;">
+                <div>
+                    <span style="font-weight:700; color:var(--primary-dark);">@{{ comment.user.username }}</span>
+                    <span style="color:#888; font-size:0.95em;">{{ comment.created_at|date:"F j, Y" }}</span>
+                </div>
+            </div>
+            <div style="margin-top:10px; color:#333;">{{ comment.text }}</div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-comments">No comments yet. Be the first!</p>
+    {% endif %}
+</div>

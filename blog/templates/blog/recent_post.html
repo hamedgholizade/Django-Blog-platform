@@ -1,0 +1,23 @@
+{% load static %}
+{% block content %}
+    {% if recent_posts %}
+            <h2>Viewed History</h2>
+            
+            {% for post in recent_posts %}
+                <div>
+                    <h4>{{ post.title }}</h4>
+                    {% if post.image %}
+                    <img src="{{post.image.url}}" width="200px">
+                    {% else %}
+                    <img src="{% static 'img/default.jpg' %}" width="200px">
+                    {% endif %}
+                    <p>by: {{ post.author.username }}</p>
+                    <a href="{% url 'post_details' post.slug %}" class="btn">
+                        <button>Show More</button>
+                    </a>
+                </div>
+            {% endfor %}
+    {% else %}
+        <p>No recent posts</p>
+    {% endif %}
+    {% endblock %}

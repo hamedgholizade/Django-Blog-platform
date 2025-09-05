@@ -1,0 +1,197 @@
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --accent: #06b6d4;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --info: #0ea5e9;
+    --bg: #f3f6fb;
+    --card-bg: rgba(255,255,255,0.85);
+    --border: #e5e7eb;
+    --shadow: 0 8px 32px rgba(30, 64, 175, 0.10);
+    --radius: 18px;
+    --font-main: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    background: linear-gradient(120deg, #f3f6fb 60%, #e0e7ff 100%);
+    color: #222;
+    min-height: 100vh;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+a:hover {
+    color: var(--accent);
+}
+
+/* ===== Header ===== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 8vw;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(30,64,175,0.04);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.title h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--primary-dark);
+    letter-spacing: -1px;
+    margin: 0;
+    text-shadow: 0 2px 8px #e0e7ff;
+}
+
+.header-buttons .btn {
+    margin-left: 14px;
+}
+
+/* ===== Buttons ===== */
+.home-button {
+    background: var(--primary-dark);
+    color: #fff;
+}
+.home-button:hover {
+    background: var(--primary);
+}
+
+.login-button {
+    background: var(--success);
+    color: #fff;
+}
+.login-button:hover {
+    background: #13760d;
+}
+
+/* ===== Layout ===== */
+.content {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 4vw 0 4vw;
+}
+
+.main {
+    min-width: 0;
+}
+
+.sidebar {
+    min-width: 0;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 32px 28px;
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+    transition: box-shadow 0.3s, transform 0.2s;
+    animation: fadeIn 0.7s;
+}
+.card:hover {
+    box-shadow: 0 16px 48px rgba(30,64,175,0.13);
+    transform: translateY(-2px) scale(1.01);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px);}
+    to { opacity: 1; transform: none;}
+}
+
+.btn, button, input[type="submit"] {
+    background: linear-gradient(90deg, var(--primary) 60%, var(--accent) 100%);
+    color: #fff;
+    border: none;
+    padding: 12px 32px;
+    font-size: 1.08rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(30,64,175,0.08);
+    transition: background 0.2s, transform 0.1s;
+}
+.btn:hover, button:hover, input[type="submit"]:hover {
+    background: linear-gradient(90deg, var(--primary-dark) 60%, #0891b2 100%);
+    transform: translateY(-2px) scale(1.03);
+}
+
+input, textarea, select {
+    font-family: inherit;
+    font-size: 1rem;
+    border-radius: 7px;
+    border: 1px solid #dbeafe;
+    padding: 10px 14px;
+    background: #f8fafc;
+    transition: border 0.2s;
+}
+input:focus, textarea:focus, select:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+/* ===== Footer ===== */
+.footer {
+    margin-top: 60px;
+    padding: 40px 8vw;
+    background: rgba(255,255,255,0.85);
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 32px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.about-us {
+    width: 70%;
+}
+
+.social-media {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: right;
+}
+
+.footer p {
+    line-height: 1.8;
+}
+
+@media (max-width: 1000px) {
+    .content {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 32px 2vw 0 2vw;
+    }
+    .sidebar {
+        margin-top: 40px;
+    }
+}
+@media (max-width: 600px) {
+    .header, .footer {
+        padding: 18px 2vw;
+    }
+    .card {
+        padding: 18px 8px;
+    }
+}
+
+

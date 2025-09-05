@@ -1,0 +1,26 @@
+<!-- last_viewed_post.html -->
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'blog/style_last_viewed_post.css' %}">
+{% endblock %}
+
+{% if last_viewed_post %}
+<div class="last-viewed-post">
+    <h2>Last Viewed Post</h2>
+    <a href="{% url 'post_details' last_viewed_post.slug %}">
+    <div class="last-viewed-post-content">
+        {% if last_viewed_post.image %}
+            <img src="{{ last_viewed_post.image.url }}" alt="{{ last_viewed_post.title }}">
+        {% else %}
+            <img src="{% static 'img/default.jpg' %}" alt="Default Image">
+        {% endif %}
+        <div class="last-viewed-post-info">
+            <h3>{{ last_viewed_post.title }}</h3>
+            <p>by {{ last_viewed_post.author.username }}</p>
+        </div>
+    </div>
+    </a>
+</div>
+{% endif %}

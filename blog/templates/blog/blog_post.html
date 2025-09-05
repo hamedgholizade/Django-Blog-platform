@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}create post{% endblock %}
+
+{% block content %}
+    <div style="display: flex; gap: 10px;">
+        <a href="{% url 'tag:create_tag' %}">
+          <button class="create-post-button" type="submit">Create a New tag</button>
+        </a>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Done</button>
+    </form>
+{% endblock %}

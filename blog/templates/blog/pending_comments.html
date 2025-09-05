@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Pending comments</h1>
+<br>
+<h2> Approved Comments </h2>
+----------------------------------
+{% for comment in approved_comments %}
+    <h4>{{ comment.user.username }}</h4>
+    <p>{{ comment.post.title }}</p>
+    <p>{{ comment.text }}</p>
+    <p>comment is shown: {{ comment.is_shown }}</p>
+    <a href="{% url 'hide_comments' comment.id %}"><button>hide</button></a>
+{% empty %}
+    <p>No approved comments found.</p>    
+{% endfor %}
+<br>
+<br>
+<h2> Hidden Comments </h2>
+----------------------------------
+{% for comment in hidden_comments %}
+    <h4>{{ comment.user.username }}</h4>
+    <p>{{ comment.post.title }}</p>
+    <p>{{ comment.text }}</p>
+    <p>comment is shown: {{ comment.is_shown }}</p>
+    <a href="{% url 'approve_comments' comment.id %}"><button>Approve</button></a>
+{% empty %}
+    <p>No hidden comments found.</p>
+{% endfor %}
+{% endblock %} 
